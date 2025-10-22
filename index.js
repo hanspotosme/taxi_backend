@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Configuración de CORS
 const allowedOrigins = [
   "http://localhost:3000",           // Para desarrollo local
-  "https://mi-frontend.onrender.com" // Reemplaza con la URL real de tu frontend
+  "https://taxi-frontend-oupw.onrender.com" // Reemplaza con la URL real de tu frontend
 ];
 
 app.use(cors({
