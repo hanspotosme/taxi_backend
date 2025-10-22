@@ -7,7 +7,25 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middlewares globales
-app.use(cors());
+// Configuración de CORS
+const allowedOrigins = [
+  "http://localhost:3000",           // Para desarrollo local
+  "https://mi-frontend.onrender.com" // Reemplaza con la URL real de tu frontend
+];
+
+app.use(cors({
+  origin: function(origin, callback){
+    // Permitir requests sin origin (como desde Postman) o los que estén en la lista
+    if(!origin || allowedOrigins.includes(origin)){
+      callback(null, true);
+    } else {
+      callback(new Error("No permitido por CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+  credentials: true // solo si usas cookies/sesiones
+}));
+
 app.use(express.json());
 
 // Rutas
