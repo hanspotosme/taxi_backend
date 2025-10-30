@@ -12,7 +12,7 @@ const allowedOrigins = [
   "http://localhost:3000",           // Para desarrollo local
   "https://taxi-frontend-oupw.onrender.com",
   "taxi-frontend-eta.vercel.app",   // Reemplaza con la URL real de tu frontend
-  "taxi-frontend-git-main-hans-potosmes-projects.vercel.app",
+  "https://taxi-frontend-wri4.vercel.app",
   "taxi-frontend-qstyb34ki-hans-potosmes-projects.vercel.app"
 ];
 
