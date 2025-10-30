@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 3000;
 // Configuración de CORS
 const allowedOrigins = [
   "http://localhost:3000",           // Para desarrollo local
-  "https://taxi-frontend-oupw.onrender.com" // Reemplaza con la URL real de tu frontend
+  "https://taxi-frontend-oupw.onrender.com", // Reemplaza con la URL real de tu frontend
+  "taxi-frontend-git-main-hans-potosmes-projects.vercel.app",
+  "taxi-frontend-qstyb34ki-hans-potosmes-projects.vercel.app"
 ];
 
 app.use(cors({
