@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
                 name: client_name,
                 phone: phone,
                 address: address,
-                notes: 'Agregado automáticamente desde el registro de llamadas.',
+                notes: '',
             };
 
             const { error: insertCustomerError } = await supabase
