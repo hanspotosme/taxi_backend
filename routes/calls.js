@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     try {
         // A. Buscar cliente por número de teléfono
         const { data: existingCustomer, error: searchError } = await supabase
-            .from('customer')
+            .from('customers')
             .select('id')
             .eq('phone', phone)
             .limit(1);
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
             };
 
             const { error: insertCustomerError } = await supabase
-                .from('customer')
+                .from('customers')
                 .insert([newCustomerData]);
 
             if (insertCustomerError) {
