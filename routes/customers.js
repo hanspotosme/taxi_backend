@@ -95,4 +95,29 @@ router.patch('/:id', async (req, res) => {
   res.json({ message: 'Cliente actualizado correctamente', data: data[0] });
 });
 
+// NUEVA RUTA: GET /api/customers/search?name=... → Buscar clientes por nombre parcial
+router.get('/search', async (req, res) => {
+  const { name } = req.query;
+
+  if (!name || name.length < 2) {
+    // Si la búsqueda es muy corta o vacía, devolvemos un array vacío para no sobrecargar la DB.
+    return res.json([]);
+  }
+
+  // Usamos 'ilike' para buscar la cadena de texto en el campo 'name', sin importar mayúsculas/minúsculas.
+  // El '%' al inicio y final permite buscar la cadena en cualquier parte del nombre.
+  const { data, error } = await supabase
+    .from('customers')
+    .select('id, name, phone, address') // Seleccionamos solo los campos necesarios
+    .ilike('name', `%${name}%`)
+    .limit(10); // Limitamos a 10 resultados para no sobrecargar el frontend
+
+  if (error) {
+    console.error('Error en la búsqueda de clientes:', error.message);
+    return res.status(500).json({ error: error.message });
+  }
+
+  res.json(data);
+});
+
 module.exports = router;
